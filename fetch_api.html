@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api</title>
+</head>
+<body>
+    <h1 id="api">api-data</h1>
+    <script>
+        fetch('https://api.covid19api.com/summary').then((apidata)=>
+        {
+            // console.log(apidata);
+            return apidata.json();
+        })
+        .then((actualdata)=>{
+            console.log(actualdata);
+            const mydata=actualdata.Countries[130];
+            document.getElementById('api').innerHTML=`The name of the country is ${mydata.Country},the total new confirmed cases are ${mydata.NewConfirmed},total confirmed cases are ${mydata.TotalConfimed} and the total deaths till now are ${mydata.TotalDeaths}`
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
+    </script>
+</body>
+</html>
